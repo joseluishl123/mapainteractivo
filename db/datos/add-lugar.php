@@ -13,7 +13,7 @@ $sql="INSERT INTO `logar`( `nombre`, `descripcion`, `fecha`, `latitud`, `longitu
 VALUES (:nombre,:descripcion,NOW(),:latitud,:longitud,:imagen,1)";
 $query=$dbh->prepare($sql);
 
-$query->bindParam(':nombre',$nombre);
+$query->bindParam(':nombre',$nombre);  
 $query->bindParam(':descripcion',$descripcion);
 $query->bindParam(':latitud',$latitud);
 $query->bindParam(':longitud',$longitud);
