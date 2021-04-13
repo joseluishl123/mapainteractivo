@@ -1,67 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Info Windows</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="src/js/main.js"></script>
     <link href="src/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="src/css/bootstrap.min.css" />
     <script src="src/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="map" class="map"></div>
 
     <div class="accordion content" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button
-            class="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="false"
-            aria-controls="collapseOne"
-          >
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             Guardar nueva Ubicación
           </button>
-        </h2>
-        <div
-          id="collapseOne"
-          class="accordion-collapse collapse show"
-          aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample"
-        >
-          <div class="accordion-body">
-            <form action="">
-              <div class="mb-3">
-                <label for="InputTitle" class="form-label">Nombre</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Nombre del punto"
-                  aria-label="default input example"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="InputTitle" class="form-label">Coordenas</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  id="Latitud"
-                  aria-label="default input example"
-                  disabled
-                />
-                <input
-                  class="form-control"
-                  type="text"
-                  id="Longitud"
-                  aria-label="default input example"
-                  disabled
-                />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"
-                  >Descripción</label
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form action="">
+                        <div class="mb-3">
+                            <label for="InputTitle" class="form-label">Nombre</label>
+                            <input class="form-control" type="text" placeholder="Nombre del punto" aria-label="default input example" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputTitle" class="form-label">Coordenas</label>
+                            <input class="form-control" type="text" id="Latitud" aria-label="default input example" disabled />
+                            <input class="form-control" type="text" id="Longitud" aria-label="default input example" disabled />
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descripción</label
                 >
                 <textarea
                   class="form-control"
@@ -98,7 +70,7 @@
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <div class="list-group">
+            <div class="list-group" id="lugares_mapa">
               <a
                 onclick="goPoint(5.094803738916297,-76.65221295759787)"
                 class="list-group-item list-group-item-action"
@@ -161,5 +133,6 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly"
       async
     ></script>
+    <script src="src/js/cargarlugares.js"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
-  include('../conexion/dbconnection.php');
-  $data = json_decode(file_get_contents('php://input') );
+
+include('../conexion/dbconnection.php');
+$data = json_decode(file_get_contents('php://input') );
 $nombre = $data['nombre'];
 $descripcion = $data['descripcion'] ;
 $latitud = $data['latitud '] ;
@@ -21,5 +22,6 @@ $query->bindParam(':imagen',$imagen);
  $query->execute();
  $retornar["respuesta"]= "datos insertados";
  $retornar["recibe"]= $data;
- echo json_encode($data)
+ echo json_encode($data);
+
  ?>
