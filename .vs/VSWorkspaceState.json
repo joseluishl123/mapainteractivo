@@ -4,8 +4,10 @@
     "\\db",
     "\\db\\conexion",
     "\\db\\datos",
-    "\\db\\modelo"
+    "\\db\\modelo",
+    "\\src",
+    "\\src\\js"
   ],
-  "SelectedNode": "\\db\\datos\\add-category.php",
+  "SelectedNode": "\\db\\conexion\\dbconnection.php",
   "PreviewInSolutionExplorer": false
 }

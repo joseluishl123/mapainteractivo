@@ -12,7 +12,7 @@ foreach($results as $row){
     $array[$x] = $row;
     $x++;
 }
-$retornar["recibe"]= $array;
+$retornar["datos"]= $array;
 echo json_encode($retornar);
 
 ?>
