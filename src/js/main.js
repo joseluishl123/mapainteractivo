@@ -8,6 +8,7 @@ function initMap() {
         zoom: 9,
         center: uluru,
     });
+
     const contentString = `<div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">Quibdó</h5>
   </div>
@@ -17,9 +18,13 @@ function initMap() {
                   style="width:100%;"
                 />
   <p>but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`;
+
     const infowindow = new google.maps.InfoWindow({
         content: contentString,
     });
+
+
+
     const marker = new google.maps.Marker({
         position: uluru,
         map,

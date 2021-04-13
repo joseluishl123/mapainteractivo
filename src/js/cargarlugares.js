@@ -16,6 +16,49 @@ async function GetServidorAsync(url, token = "") {
     //console.log(response.status);
 }
 
+
+async function POSTServidor(url, data, token) {
+    var request = new Request(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`,
+        },
+    });
+
+    let res = await fetch(request);
+    //console.log(res);
+    if (res.ok) {
+        //console.log(res.statusText);
+        return res.ok;
+    } else {
+        //console.log(res);
+        return res.ok;
+    }
+}
+
+
+async function GuardarUbicacion() {
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+
+    let data = {
+        "nombre": "",
+        "latitud": "",
+        "longitud": "",
+        "descripcion": "",
+        "imagen": "",
+    };
+    let url = `${urlBase}bjhsdfshdf`
+    let respuesta = await POSTServidor(url, data, "");
+    console.log(respuesta);
+}
+
 async function CargarUbucaciones() {
     let datos = await GetServidorAsync(`${urlBase}db/datos/lista.php`);
     console.log(datos);
@@ -37,5 +80,4 @@ async function CargarUbucaciones() {
         });
         document.getElementById('lugares_mapa').innerHTML = html;
     }
-
 }
