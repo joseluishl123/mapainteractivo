@@ -3,11 +3,30 @@
 
 <head>
     <title>Info Windows</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- <link href="assets/css/default/app.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="src/js/main.js"></script>
     <link href="src/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="src/css/bootstrap.min.css" />
     <script src="src/js/bootstrap.min.js"></script>
+    <link href="css/Configuracion/ActualizarFoto.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- <link href="assets/css/default/app.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 </head>
 
 <body>
@@ -25,7 +44,7 @@
                     <form action="">
                         <div class="mb-3">
                             <label for="InputTitle" class="form-label">Nombre</label>
-                            <input class="form-control" type="text" placeholder="Nombre del punto" aria-label="default input example" />
+                            <input class="form-control" type="text" id="nombre_lugar" placeholder="Nombre del punto" aria-label="default input example" />
                         </div>
                         <div class="mb-3">
                             <label for="InputTitle" class="form-label">Coordenas</label>
@@ -35,104 +54,112 @@
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Descripción</label
                 >
-                <textarea
+                <textarea id="descripcion_lugar"
                   class="form-control"
                   id="exampleFormControlTextarea1"
                   rows="3"
                 ></textarea>
               </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">
+
+                <form id="caragarImg" action="" method="POST" enctype="multipart/form-data">
+                    <div class="containerform">
+                        <div class="form-group">
+                            <div class="preview-zone hidden centrado">
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <div><b>Visualizar</b></div>
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-danger btn-xs remove-preview" id="descartar">
+                                                    <i class="fa fa-times"></i> Descartar
+                                                </button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body"></div>
+                                </div>
+                            </div>
+                            <div class="dropzone-wrapper centrado">
+                                <div class="dropzone-desc">
+                                    <i class="glyphicon glyphicon-download-alt"></i>
+                                    <p>Arrastra o selcciona una imagen.</p>
+                                </div>
+                                <input id="fotoBanner" type="file" name="img_logo" class="dropzone" onclick="" accept="image/png, image/jpeg,image/webp, image/svg,image/jpg">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <div class="dropzone-wrapper centrado">
+                    <div class="dropzone-desc">
+                        <i class="glyphicon glyphicon-download-alt"></i>
+                        <p>Arrastra o selcciona una imagen.</p>
+                    </div>
+                    <input id="fotoBanner" type="file" name="img_logo" class="dropzone" accept="image/png, image/jpeg,image/webp, image/svg,image/jpg">
+                </div> -->
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3" onclick="GuardarUbicacion() ">
                   Guardar Ubicación
                 </button>
-              </div>
-            </form>
-          </div>
+                </div>
+                </form>
+            </div>
         </div>
-      </div>
-      <div class="accordion-item">
+    </div>
+    <div class="accordion-item">
         <h2 class="accordion-header" id="headingTwo">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             Lista de Ubicaciones
           </button>
         </h2>
-        <div
-          id="collapseTwo"
-          class="accordion-collapse collapse"
-          aria-labelledby="headingTwo"
-          data-bs-parent="#accordionExample"
-        >
-          <div class="accordion-body">
-            <div class="list-group" id="lugares_mapa">
-              <a
-                onclick="goPoint(5.094803738916297,-76.65221295759787)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Condoto</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.16035287942598,-76.68784044962018)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Istmina</h5>
-                </div>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="list-group" id="lugares_mapa">
+                    <a onclick="goPoint(5.094803738916297,-76.65221295759787)" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Condoto</h5>
+                        </div>
+                        <p class="mb-1">Some placeholder content in a paragraph.</p>
+                    </a>
+                    <a onclick="goPoint(5.16035287942598,-76.68784044962018)" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Istmina</h5>
+                        </div>
 
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.6953765148714615, -76.65155875727395)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Quibdó</h5>
+                        <p class="mb-1">Some placeholder content in a paragraph.</p>
+                    </a>
+                    <a onclick="goPoint(5.6953765148714615, -76.65155875727395)" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Quibdó</h5>
+                        </div>
+                        <p class="mb-1">Some placeholder content in a paragraph.</p>
+                    </a>
+                    <a onclick="goPoint(5.263723506407031, -76.5634461450925)" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Tadó</h5>
+                        </div>
+                        <p class="mb-1">Some placeholder content in a paragraph.</p>
+                    </a>
+                    <a onclick="goPoint(5.710823154026221, -77.26438003231776)" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Nuqui</h5>
+                        </div>
+                        <p class="mb-1">Some placeholder content in a paragraph.</p>
+                    </a>
                 </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.263723506407031, -76.5634461450925)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Tadó</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.710823154026221, -77.26438003231776)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Nuqui</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
     </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly" async></script>
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/theme/default.min.js"></script>
     <script src="src/js/cargarlugares.js"></script>
-  </body>
+    <!-- ================== END BASE JS ================== -->
+
+
+
+</body>
+
 </html>

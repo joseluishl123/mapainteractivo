@@ -25,33 +25,28 @@ async function initMap() {
     });
 
     const infowindow = new google.maps.InfoWindow({
-        content: contenido("s.nombre", "https://image.freepik.com/vector-gratis/circulo-neon-luz-redonda-futurista_158587-8.jpg", "s.descripcion")
+        content: contenido("nombre", "https://image.freepik.com/vector-gratis/circulo-neon-luz-redonda-futurista_158587-8.jpg", "descripcion")
     });
-
 
     const marker = new google.maps.Marker({
         position: uluru,
         map,
         title: 'Uluru (Ayers Rock)',
     });
-
-
-    const marker100 = new google.maps.Marker({
-        position: { lat: -7.366360733929082, lng: -64.67783582047444 },
-        map,
-        title: 'Uluru (Ayers Rock)',
+    marker.addListener('click', () => {
+        infowindow.open(map, marker);
     });
-
 
     // var lugares = CargarUbucaciones();
     var datos = await CargarUbucaciones();
     console.log(datos);
-    var i = 0;
     datos.forEach(s => {
-        i++;
+        // i++;
+        let i = s.id;
+        var imageb64 = atob(s.imagen);
         console.log(s.latitud, s.longitud);
         eval(`const marker` + i + ` = new google.maps.Marker({
-            position: { lat: ${s.latitud}, lng: ${s.latitud} },
+            position: { lat: ${s.latitud}, lng: ${s.longitud} },
             map,
             title: '${s.nombre}',
         });
@@ -61,14 +56,12 @@ async function initMap() {
         });
 
         const infowindow` + i + ` = new google.maps.InfoWindow({
-            content: contenido("${s.nombre}", "${s.imagen}", "${s.descripcion}")
+            content: contenido("${s.nombre}", "${imageb64}", "${s.descripcion}")
         });
         `)
     });
 
-    marker.addListener('click', () => {
-        infowindow.open(map, marker);
-    });
+
 
     map.addListener('click', (e) => {
         placeMarkerAndPanTo(e.latLng, map);
@@ -117,35 +110,53 @@ async function POSTServidor(url, data, token) {
     });
 
     let res = await fetch(request);
-    //console.log(res);
     if (res.ok) {
-        //console.log(res.statusText);
         return res.ok;
     } else {
-        //console.log(res);
         return res.ok;
     }
 }
 
-
 async function GuardarUbicacion() {
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-
+    var nombre = document.getElementById("nombre_lugar").value;
+    var latutd = document.getElementById('Latitud').value
+    var longitud = document.getElementById('Longitud').value
+    var descripcion = document.getElementById("descripcion_lugar").value;
     let data = {
-        "nombre": "",
-        "latitud": "",
-        "longitud": "",
-        "descripcion": "",
-        "imagen": "",
+        "nombre": nombre,
+        "latitud": latutd,
+        "longitud": longitud,
+        "descripcion": descripcion,
+        "imagen": _fotoCargada,
     };
-    let url = `${urlBase}bjhsdfshdf`
+    console.log(data);
+    if (nombre == null || nombre == "") {
+        alert("Ingrese un nombre ");
+    }
+    if (descripcion == null || descripcion == "") {
+        alert("Ingrese una descripcion al lugar ");
+        return;
+
+    }
+    if (latutd == null || latutd == "") {
+        alert("Selecciones un lugar en el mapa");
+        return;
+    }
+
+    if (longitud == null || longitud == "") {
+        alert("Selecciones un lugar en el mapa");
+        return;
+    }
+
+
+
+    let url = `${urlBase}db/datos/add-lugar.php`
     let respuesta = await POSTServidor(url, data, "");
     console.log(respuesta);
+    await CargarUbucaciones();
+    initMap();
+    alert("La ubicación de ha guardado");
+
 }
 
 async function CargarUbucaciones() {
