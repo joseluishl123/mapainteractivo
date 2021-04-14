@@ -1,0 +1,11 @@
+﻿.checkbox.checkbox-css label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: #a5a5a5;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}

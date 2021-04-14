@@ -1,83 +1,62 @@
-urlBase = "http://localhost:8081/mapainteractivo/";
-CargarUbucaciones();
-async function GetServidorAsync(url, token = "") {
-    var request = new Request(url, {
-        method: 'GET',
-        headers: {
-            "Authorization": `Bearer ${token}`,
-        },
-    });
-    let response = await fetch(request);
-    //console.log(response);
-    if (response.status == 200)
-        return response.json();
-    else
-        return null;
-    //console.log(response.status);
-}
+var _fotoCargada;
 
+function readFile(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-async function POSTServidor(url, data, token) {
-    var request = new Request(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${token}`,
-        },
-    });
+        reader.onload = function(e) {
+            _fotoActual = e.target.result;
+            var htmlPreview =
+                '<img width="200" id="imagenBannerTemporal" src="' + e.target.result + '" />' +
+                '<p>' + input.files[0].name + '</p>';
+            _fotoCargada = e.target.result;
+            var encodedStringBtoA = btoa(_fotoCargada);
+            // console.log(encodedStringBtoA);
 
-    let res = await fetch(request);
-    //console.log(res);
-    if (res.ok) {
-        //console.log(res.statusText);
-        return res.ok;
-    } else {
-        //console.log(res);
-        return res.ok;
+            // var decodedStringAtoB = atob(encodedStringBtoA);
+            // console.log(decodedStringAtoB);
+            _fotoCargada = encodedStringBtoA;
+            console.log(_fotoCargada);
+            var wrapperZone = $(input).parent();
+            var previewZone = $(input).parent().parent().find('.preview-zone');
+            var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+
+            wrapperZone.removeClass('dragover');
+            previewZone.removeClass('hidden');
+            boxZone.empty();
+            boxZone.append(htmlPreview);
+        };
+
+        reader.readAsDataURL(input.files[0]);
     }
 }
 
-
-async function GuardarUbicacion() {
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-    document.getElementById("").value;
-
-    let data = {
-        "nombre": "",
-        "latitud": "",
-        "longitud": "",
-        "descripcion": "",
-        "imagen": "",
-    };
-    let url = `${urlBase}bjhsdfshdf`
-    let respuesta = await POSTServidor(url, data, "");
-    console.log(respuesta);
+function reset(e) {
+    e.wrap('<form>').closest('form').get(0).reset();
+    e.unwrap();
 }
 
-async function CargarUbucaciones() {
-    let datos = await GetServidorAsync(`${urlBase}db/datos/lista.php`);
-    console.log(datos);
-    if (datos != null) {
-        let html = "";
-        datos.datos.forEach(s => {
-            html += `
-                    <a
-                    onclick="goPoint(${s.latitud}, ${s.longitud})"
-                    class="list-group-item list-group-item-action"
-                    aria-current="true"
-                    >
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">${s.nombre}</h5>
-                    </div>
-                    <p class="mb-1">${s.descripcion}</p>
-                </a>
-            `;
-        });
-        document.getElementById('lugares_mapa').innerHTML = html;
-    }
-}
+$(".dropzone").change(function() {
+    readFile(this);
+});
+
+$('.dropzone-wrapper').on('dragover', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).addClass('dragover');
+});
+
+$('.dropzone-wrapper').on('dragleave', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).removeClass('dragover');
+});
+
+$('.remove-preview').on('click', function() {
+    var boxZone = $(this).parents('.preview-zone').find('.box-body');
+    var previewZone = $(this).parents('.preview-zone');
+    var dropzone = $(this).parents('.form-group').find('.dropzone');
+    boxZone.empty();
+    previewZone.addClass('hidden');
+    reset(dropzone);
+});
