@@ -1,28 +1,32 @@
 // This example displays a marker at the center of Australia.
 // When the user clicks the marker, an info window opens.
+
+urlBase = "http://localhost:8081/mapainteractivo/";
+// var lugares = CargarUbucaciones();
 var map = null;
 
-function initMap() {
+function contenido(nombre, imagen, descripcion) {
+    const contentString = `<div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">${nombre}</h5>
+        </div>
+            <img  src="${imagen}"
+                  alt=""
+                  style="width:100%;"/>
+  <p>${descripcion}</p>`;
+    return contentString;
+}
+
+
+async function initMap() {
     const uluru = { lat: 5.6953765148714615, lng: -76.65155875727395 };
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 9,
         center: uluru,
     });
 
-    const contentString = `<div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">Quibdó</h5>
-  </div>
-  <img
-                  src="http://qradio.com.co/wp-content/uploads/2020/04/WhatsApp-Image-2020-04-29-at-8.39.17-AM-678x381.jpeg"
-                  alt=""
-                  style="width:100%;"
-                />
-  <p>but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`;
-
     const infowindow = new google.maps.InfoWindow({
-        content: contentString,
+        content: contenido("s.nombre", "https://image.freepik.com/vector-gratis/circulo-neon-luz-redonda-futurista_158587-8.jpg", "s.descripcion")
     });
-
 
 
     const marker = new google.maps.Marker({
@@ -30,25 +34,36 @@ function initMap() {
         map,
         title: 'Uluru (Ayers Rock)',
     });
-    const marker2 = new google.maps.Marker({
-        position: { lat: 5.094803738916297, lng: -76.65221295759787 },
+
+
+    const marker100 = new google.maps.Marker({
+        position: { lat: -7.366360733929082, lng: -64.67783582047444 },
         map,
         title: 'Uluru (Ayers Rock)',
     });
-    const marker3 = new google.maps.Marker({
-        position: { lat: 5.16035287942598, lng: -76.68784044962018 },
-        map,
-        title: 'Uluru (Ayers Rock)',
-    });
-    const marker4 = new google.maps.Marker({
-        position: { lat: 5.263723506407031, lng: -76.5634461450925 },
-        map,
-        title: 'Uluru (Ayers Rock)',
-    });
-    const marker5 = new google.maps.Marker({
-        position: { lat: 5.710823154026221, lng: -77.26438003231776 },
-        map,
-        title: 'Uluru (Ayers Rock)',
+
+
+    // var lugares = CargarUbucaciones();
+    var datos = await CargarUbucaciones();
+    console.log(datos);
+    var i = 0;
+    datos.forEach(s => {
+        i++;
+        console.log(s.latitud, s.longitud);
+        eval(`const marker` + i + ` = new google.maps.Marker({
+            position: { lat: ${s.latitud}, lng: ${s.latitud} },
+            map,
+            title: '${s.nombre}',
+        });
+        
+        marker` + i + `.addListener('click', () => {
+            infowindow` + i + `.open(map, marker` + i + `);
+        });
+
+        const infowindow` + i + ` = new google.maps.InfoWindow({
+            content: contenido("${s.nombre}", "${s.imagen}", "${s.descripcion}")
+        });
+        `)
     });
 
     marker.addListener('click', () => {
@@ -73,4 +88,87 @@ function initMap() {
 function goPoint(lat, lng) {
     map.panTo(new google.maps.LatLng(lat, lng));
     map.setZoom(12);
+}
+
+async function GetServidorAsync(url, token = "") {
+    var request = new Request(url, {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+        },
+    });
+    let response = await fetch(request);
+    //console.log(response);
+    if (response.status == 200)
+        return response.json();
+    else
+        return null;
+    //console.log(response.status);
+}
+
+async function POSTServidor(url, data, token) {
+    var request = new Request(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`,
+        },
+    });
+
+    let res = await fetch(request);
+    //console.log(res);
+    if (res.ok) {
+        //console.log(res.statusText);
+        return res.ok;
+    } else {
+        //console.log(res);
+        return res.ok;
+    }
+}
+
+
+async function GuardarUbicacion() {
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+    document.getElementById("").value;
+
+    let data = {
+        "nombre": "",
+        "latitud": "",
+        "longitud": "",
+        "descripcion": "",
+        "imagen": "",
+    };
+    let url = `${urlBase}bjhsdfshdf`
+    let respuesta = await POSTServidor(url, data, "");
+    console.log(respuesta);
+}
+
+async function CargarUbucaciones() {
+    let datos = await GetServidorAsync(`${urlBase}db/datos/lista.php`);
+    console.log(datos);
+    if (datos != null) {
+        let html = "";
+        datos.datos.forEach(s => {
+            console.log(s.latitud, s.longitud);
+            html += `
+                    <a
+                    onclick="goPoint(${s.latitud}, ${s.longitud})"
+                    class="list-group-item list-group-item-action"
+                    aria-current="true"
+                    >
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">${s.nombre}</h5>
+                    </div>
+                    <p class="mb-1">${s.descripcion}</p>
+                </a>
+            `;
+        });
+        document.getElementById('lugares_mapa').innerHTML = html;
+    }
+    return datos.datos;
 }

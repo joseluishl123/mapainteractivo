@@ -2,12 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\db",
-    "\\db\\conexion",
     "\\db\\datos",
     "\\db\\modelo",
-    "\\src",
     "\\src\\js"
   ],
-  "SelectedNode": "\\db\\conexion\\dbconnection.php",
+  "SelectedNode": "\\db\\mapainteractivo.sql",
   "PreviewInSolutionExplorer": false
 }
