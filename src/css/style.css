@@ -1,41 +1,44 @@
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
 #map {
-    height: 100%;
-    width: 75%;
+  height: 100%;
+  width: 75%;
 }
-
-
-/* Optional: Makes the sample page fill the window. */
 
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    display: flex;
+  display: flex;
 }
 
 form {
-    width: 100%;
-    /* padding: 2rem; */
+  width: 100%;
 }
 
 .content {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
 }
 
 .accordion-item {
-    width: 100%;
+  width: 100%;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.remove-preview,
+.btnGuardar {
+  width: 100%;
+}
+
+.gm-style-iw.gm-style-iw-c {
+  width: 500px;
 }
