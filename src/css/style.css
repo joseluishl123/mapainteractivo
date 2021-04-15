@@ -26,6 +26,15 @@ form {
   overflow: scroll;
 }
 
+.accordion-body input {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.accordion-body nav {
+  width: 100%;
+}
+
 .accordion-item {
   width: 100%;
 }
@@ -41,4 +50,33 @@ a {
 
 .gm-style-iw.gm-style-iw-c {
   width: 500px;
+}
+
+.item-list-ubications {
+  display: flex;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.action-buttons i {
+  cursor: pointer;
+}
+
+.confirmation {
+  border-radius: 3px;
+  background-color: #00c569;
+  color: #fff;
+  text-align: center;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation h2 {
+  font-size: 20px;
 }

@@ -12,7 +12,10 @@
     <!-- <link href="assets/css/default/app.min.css" rel="stylesheet" /> -->
     <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" /> -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="src/js/main.js"></script>
     <link href="src/css/style.css" rel="stylesheet" type="text/css" />
@@ -37,7 +40,7 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button
-            class="accordion-button"
+            class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseOne"
@@ -49,13 +52,16 @@
         </h2>
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          class="accordion-collapse collapse"
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
             <form action="">
               <div class="mb-3">
+                <div class="confirmation" id="confirmation-label">
+                  <h2>Ubicación Definida</h2>
+                </div>
                 <label for="InputTitle" class="form-label">Nombre</label>
                 <input
                   class="form-control"
@@ -65,7 +71,7 @@
                   aria-label="default input example"
                 />
               </div>
-              <div class="mb-3">
+              <div class="mb-3" style="display: none">
                 <label for="InputTitle" class="form-label">Coordenas</label>
                 <input
                   class="form-control"
@@ -145,10 +151,12 @@
           </div>
         </div>
       </div>
+
+      <!-- Lista de ubicaciones -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingTwo">
           <button
-            class="accordion-button collapsed"
+            class="accordion-button"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseTwo"
@@ -160,64 +168,28 @@
         </h2>
         <div
           id="collapseTwo"
-          class="accordion-collapse collapse"
+          class="accordion-collapse collapse show"
           aria-labelledby="headingTwo"
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <div class="list-group" id="lugares_mapa">
-              <a
-                onclick="goPoint(5.094803738916297,-76.65221295759787)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Condoto</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.16035287942598,-76.68784044962018)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Istmina</h5>
-                </div>
-
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.6953765148714615, -76.65155875727395)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Quibdó</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.263723506407031, -76.5634461450925)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Tadó</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-              <a
-                onclick="goPoint(5.710823154026221, -77.26438003231776)"
-                class="list-group-item list-group-item-action"
-                aria-current="true"
-              >
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Nuqui</h5>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-              </a>
-            </div>
+            <input
+              class="form-control"
+              type="text"
+              id="filtro-ubicaciones"
+              aria-label="default input example"
+              placeholder="Buscar una ubicación"
+            />
+            <nav aria-label="...">
+              <ul class="pagination pagination-sm">
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link">1</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+              </ul>
+            </nav>
+            <div class="list-group" id="lugares_mapa"></div>
           </div>
         </div>
       </div>

@@ -26,6 +26,7 @@ async function initMap() {
     center: choco,
   });
 
+  document.getElementById('confirmation-label').hidden = true;
   /* const infowindow = new google.maps.InfoWindow({
     content: contenido(
       'nombre',
@@ -84,9 +85,11 @@ async function initMap() {
   map.addListener('click', (e) => {
     if (markers.length > 0) {
       deleteMarkers();
+      document.getElementById('confirmation-label').hidden = true;
     } else {
       document.getElementById('Latitud').value = e.latLng.lat();
       document.getElementById('Longitud').value = e.latLng.lng();
+      document.getElementById('confirmation-label').hidden = false;
       map.panTo(e.latLng);
       addMarker(e.latLng);
     }
@@ -180,12 +183,12 @@ async function GuardarUbicacion() {
     return;
   }
   if (latutd == null || latutd == '') {
-    alert('Selecciones un lugar en el mapa');
+    alert('Selecciona un lugar en el mapa');
     return;
   }
 
   if (longitud == null || longitud == '') {
-    alert('Selecciones un lugar en el mapa');
+    alert('Selecciona un lugar en el mapa');
     return;
   }
 
@@ -199,13 +202,13 @@ async function GuardarUbicacion() {
 
 async function CargarUbucaciones() {
   let datos = await GetServidorAsync(`${urlBase}/db/datos/lista.php`);
-  console.log(datos);
   if (datos != null) {
     let html = '';
     datos.datos.forEach((s) => {
       console.log(s.latitud, s.longitud);
-      html += `
-                    <a
+      html += `   
+      <div class="item-list-ubications">
+      <a
                     onclick="goPoint(${s.latitud}, ${s.longitud})"
                     class="list-group-item list-group-item-action"
                     aria-current="true"
@@ -215,6 +218,11 @@ async function CargarUbucaciones() {
                     </div>
                     <p class="mb-1">${s.descripcion}</p>
                 </a>
+                <div class="action-buttons">
+                <i class="bi bi-pencil"></i>
+                <i class="bi bi-trash"></i>
+                </div>
+                </div>
             `;
     });
     document.getElementById('lugares_mapa').innerHTML = html;
