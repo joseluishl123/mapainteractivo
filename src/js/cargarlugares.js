@@ -6,6 +6,7 @@ function readFile(input) {
 
         reader.onload = function(e) {
             _fotoActual = e.target.result;
+            document.getElementById("cargar_imagen").innerHTML = "";
             var htmlPreview =
                 '<img width="200" id="imagenBannerTemporal" src="' + e.target.result + '" />' +
                 '<p>' + input.files[0].name + '</p>';

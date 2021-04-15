@@ -4,6 +4,7 @@
 urlBase = "http://localhost:8081/mapainteractivo/";
 // var lugares = CargarUbucaciones();
 var map = null;
+var _listaUbicaciones;
 
 function contenido(nombre, imagen, descripcion) {
     const contentString = `<div class="d-flex w-100 justify-content-between">
@@ -39,6 +40,7 @@ async function initMap() {
 
     // var lugares = CargarUbucaciones();
     var datos = await CargarUbucaciones();
+    _listaUbicaciones = datos;
     console.log(datos);
     datos.forEach(s => {
         // i++;
@@ -53,10 +55,11 @@ async function initMap() {
         
         marker` + i + `.addListener('click', () => {
             infowindow` + i + `.open(map, marker` + i + `);
+            cargarUbicacion(${s.id});
         });
 
         const infowindow` + i + ` = new google.maps.InfoWindow({
-            content: contenido("${s.nombre}", "${imageb64}", "${s.descripcion}")
+            content: contenido("${s.nombre}", "${imageb64}", "${s.descripcion}")            
         });
         `)
     });
@@ -78,9 +81,10 @@ async function initMap() {
     }
 }
 
-function goPoint(lat, lng) {
+function goPoint(lat, lng, id) {
     map.panTo(new google.maps.LatLng(lat, lng));
     map.setZoom(12);
+    cargarUbicacion(id);
 }
 
 async function GetServidorAsync(url, token = "") {
@@ -168,7 +172,7 @@ async function CargarUbucaciones() {
             console.log(s.latitud, s.longitud);
             html += `
                     <a
-                    onclick="goPoint(${s.latitud}, ${s.longitud})"
+                    onclick="goPoint(${s.latitud}, ${s.longitud}, ${s.id})"
                     class="list-group-item list-group-item-action"
                     aria-current="true"
                     >
@@ -182,4 +186,29 @@ async function CargarUbucaciones() {
         document.getElementById('lugares_mapa').innerHTML = html;
     }
     return datos.datos;
+}
+
+
+function cargarUbicacion(id) {
+    _listaUbicaciones
+    for (let index = 0; index < _listaUbicaciones.length; index++) {
+        const element = _listaUbicaciones[index];
+        if (element.id == id) {
+            console.log("La nota es: ");
+            document.getElementById("nombre_lugar").value = element.nombre;
+            document.getElementById('Latitud').value = element.latitud;
+            document.getElementById('Longitud').value = element.longitud;
+            document.getElementById("descripcion_lugar").value = element.descripcion;
+            var htmlPreview =
+                '<img width="200" id="imagenBannerTemporal" src="' + atob(element.imagen) + '" />' +
+                '<p>Imagen</p>';
+            _fotoCargada = atob(element.imagen);
+            document.getElementById("cargar_imagen").innerHTML = htmlPreview;
+
+
+            // console.log(element);
+            break;
+        }
+
+    }
 }
