@@ -58,6 +58,7 @@ $('.remove-preview').on('click', function() {
     var previewZone = $(this).parents('.preview-zone');
     var dropzone = $(this).parents('.form-group').find('.dropzone');
     boxZone.empty();
+    _modificar = false;
     previewZone.addClass('hidden');
     reset(dropzone);
 });

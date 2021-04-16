@@ -1,4 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+// DB credentials.
 include('../conexion/dbconnection.php');
 // establecer y realizar consulta. guardamos en variable.
 
@@ -19,5 +23,7 @@ foreach($results as $row){
 }
 $retornar["datos"]= $array;
 echo json_encode($retornar);
-
+  header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 ?>

@@ -1,11 +1,14 @@
 {
   "ExpandedNodes": [
     "",
+    "\\assets\\js\\theme",
     "\\db",
     "\\db\\conexion",
     "\\db\\datos",
-    "\\lib"
+    "\\mapa",
+    "\\src",
+    "\\src\\js"
   ],
-  "SelectedNode": "\\db\\conexion",
+  "SelectedNode": "\\mapa\\index.html",
   "PreviewInSolutionExplorer": false
 }

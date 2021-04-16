@@ -7,6 +7,7 @@ var latitud = null;
 var marker = null;
 let markers = [];
 var _listaUbicaciones;
+var _modificar;
 
 function contenido(nombre, imagen, descripcion) {
     const contentString = `<div class="infowindow"><div class="d-flex w-100 justify-content-between">
@@ -49,39 +50,48 @@ async function initMap() {
     // var lugares = CargarUbucaciones();
     var datos = await CargarUbucaciones();
     console.log(datos);
-    datos.forEach((s) => {
-        // i++;
-        let i = s.id;
-        var imageb64 = atob(s.imagen);
-        console.log(s.latitud, s.longitud);
-        eval(
-            `const marker` +
-            i +
-            ` = new google.maps.Marker({
-            position: { lat: ${s.latitud}, lng: ${s.longitud} },
-            map,
-            title: '${s.nombre}',
-        });
-        
-        marker` +
-            i +
-            `.addListener('click', () => {
-            infowindow` +
-            i +
-            `.open(map, marker` +
-            i +
-            `);
-        });
 
-        const infowindow` +
-            i +
-            ` = new google.maps.InfoWindow({
-            content: contenido("${s.nombre}", "${imageb64}", "${s.descripcion}")
+    if (datos.length > 0 && datos != null) {
+
+        datos.forEach((s) => {
+            // i++;
+            let i = s.id;
+            var imageb64 = "https://i.pinimg.com/736x/3a/ab/e0/3aabe0e9a520b9ad90407a82f85adb42.jpg";
+            if (s.imagen != null && s.imagen!="") {
+                imageb64 = atob(s.imagen);
+            }
+            console.log(s.latitud, s.longitud);
+            eval(
+                `const marker` +
+                i +
+                ` = new google.maps.Marker({
+                position: { lat: ${s.latitud}, lng: ${s.longitud} },
+                map,
+                title: '${s.nombre}',
+            });
+        
+            marker` +
+                i +
+                `.addListener('click', () => {
+                infowindow` +
+                i +
+                `.open(map, marker` +
+                i +
+                `);
+            });
+
+            const infowindow` +
+                i +
+                ` = new google.maps.InfoWindow({
+                content: contenido("${s.nombre}", "${imageb64}", "${s.descripcion}")
+            });
+            `
+            );
         });
-        `
-        );
-    });
-    console.log(marker);
+    }
+
+    //console.log(marker);
+
     map.addListener('click', (e) => {
         if (markers.length > 0) {
             deleteMarkers();
@@ -133,6 +143,15 @@ function goPoint(lat, lng, id) {
 
 
 async function GuardarUbicacion() {
+    console.log(_modificar);
+
+    if (_modificar) {
+        var confirma = confirm("Desea actualizar la ubicación?");
+        console.log(_modificar);
+
+        return;
+    }
+
     var nombre = document.getElementById('nombre_lugar').value;
     var latutd = document.getElementById('Latitud').value;
     var longitud = document.getElementById('Longitud').value;
@@ -144,6 +163,7 @@ async function GuardarUbicacion() {
         descripcion: descripcion,
         imagen: _fotoCargada,
     };
+    _modificar = false;
     console.log(data);
     if (nombre == null || nombre == '') {
         alert('Ingrese un nombre ');
@@ -167,7 +187,7 @@ async function GuardarUbicacion() {
     console.log(respuesta);
     await CargarUbucaciones();
     initMap();
-    alert('La ubicación de ha guardado');
+    alert('La ubicación se ha guardado');
 }
 
 async function CargarUbucaciones(listaUbicaciones = null) {
@@ -181,10 +201,10 @@ async function CargarUbucaciones(listaUbicaciones = null) {
         }
     }
 
-
-        listaUbicaciones.forEach((s) => {
-            console.log(s.latitud, s.longitud);
-            html += `   
+    _modificar = false;
+    listaUbicaciones.forEach((s) => {
+        console.log(s.latitud, s.longitud);
+        html += `   
       <div class="item-list-ubications">
       <a
                     onclick="goPoint(${s.latitud}, ${s.longitud})"
@@ -198,12 +218,12 @@ async function CargarUbucaciones(listaUbicaciones = null) {
                 </a>
                 <div class="action-buttons">
                  <a onclick="cargarUbicacion(${s.id})"> <i class="bi bi-pencil"></i>  </a>
-                 <a onclick="GuardarUbicacion( ${s.id})"> <i class="bi bi-trash"></i> </a>
+                 <a onclick="EliminarUbicacion( ${s.id})"> <i class="bi bi-trash"></i> </a>
                 </div>
                 </div>
             `;
-        });
-        document.getElementById('lugares_mapa').innerHTML = html;
+    });
+    document.getElementById('lugares_mapa').innerHTML = html;
     return listaUbicaciones;
 }
 
@@ -223,8 +243,8 @@ function cargarUbicacion(id) {
                 '<p>Imagen</p>';
             _fotoCargada = atob(element.imagen);
             document.getElementById("cargar_imagen").innerHTML = htmlPreview;
-
-
+            _modificar = true;
+            console.log(_modificar);
             // console.log(element);
             break;
         }
@@ -233,19 +253,19 @@ function cargarUbicacion(id) {
 }
 
 
-async function GuardarUbicacion(id) {
+async function EliminarUbicacion(id) {
 
     let data = {
         id: id
     };
-    var confimar = confirm("Esta seguro de eliminar la ubicación");
+    var confimar = confirm("Esta seguro de agregar la ubicación");
     if (confimar) {
         let url = `${urlBase}/db/datos/eliminar.php`;
         let respuesta = await POSTServidor(url, data, '');
         console.log(respuesta);
         await CargarUbucaciones();
         initMap();
-        alert('La ubicación de ha eliminado');
+        alert('La ubicación de ha agregado');
     }
 
 }
@@ -254,14 +274,19 @@ async function GuardarUbicacion(id) {
 //    var buscar = document.getElementById("filtro-ubicaciones").value;
 //    filtro - ubicaciones
 //}
+function quitarAcentos(cadena) {
+    const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
+    return cadena.split('').map(letra => acentos[letra] || letra).join('').toString();
+}
 
-$("#filtro-ubicaciones").keyup( function (event) {
+$("#filtro-ubicaciones").keyup(function (event) {
     //if (event.keyCode == 13) {
     listaDi = [];
     var message = $("#filtro-ubicaciones").val();
     console.log(message);
     _listaUbicaciones.forEach(s => {
-        if (s.nombre.includes(message)) {
+        var nombre = quitarAcentos(s.nombre.toLowerCase());
+        if (nombre.includes(quitarAcentos(message.toLowerCase()))) {
             console.log(s);
             listaDi.push(s);
         }
