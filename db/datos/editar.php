@@ -18,6 +18,7 @@ $query->bindParam(':descripcion',$descripcion);
 $query->bindParam(':latitud',$latitud);
 $query->bindParam(':longitud',$longitud);
 $query->bindParam(':imagen',$imagen);
+$query->bindParam(':id',$id);
 
  $query->execute();
  $data['imagen']="";

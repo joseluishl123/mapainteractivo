@@ -10,41 +10,36 @@
     <title>Login</title>
   </head>
   <body>
-    <div class="contenedor">
-      <div class="divisor-elevacion">
-        <div class="form-container">
-          <form action="">
-            <img src="src/img/logo.png" alt="logo" />
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"
-                >USUARIO</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Nombre de usuario"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label"
-                >CONTRASEÑA</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Contraseña"
-                required
-              />
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-light mb-3">Acceder</button>
-            </div>
-          </form>
-        </div>
+      <div class="contenedor">
+          <div class="divisor-elevacion">
+              <div class="form-container">
+                  <form onclick="return false">
+                      <!--<img src="src/img/logo.png" alt="logo" />-->
+                      <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label">USUARIO</label>
+                          <input class="form-control"
+                                 id="usuario"
+                                 placeholder="Nombre de usuario"
+                                 required />
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleFormControlTextarea1" class="form-label">CONTRASEÑA</label>
+                          <input type="password"
+                                 class="form-control"
+                                 id="password"
+                                 placeholder="Contraseña"
+                                 required />
+                      </div>
+                      <div class="col-auto">
+                          <button type="submit" onclick="Login()" class="btn btn-light mb-3">Acceder</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
       </div>
-    </div>
+
+      <script src="src/js/peticiones.js"></script>
+      <script src="src/js/login.js"></script>
+
   </body>
 </html>
