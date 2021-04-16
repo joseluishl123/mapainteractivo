@@ -1,6 +1,6 @@
 #map {
   height: 100%;
-  width: 75%;
+  width: 100%;
 }
 
 html,
@@ -17,13 +17,38 @@ body {
 form {
   width: 100%;
 }
+.action-button {
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  background-color: #ffffff;
+  height: 40px;
+}
 
 .content {
-  width: 25%;
+  width: 425px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
+  overflow: hidden;
+  padding: 0 20px;
+  margin-top: 53px;
+  padding-bottom: 20px;
+  position: absolute;
+  right: 0px;
+  max-height: 90%;
+}
+
+.container-collapse {
+  width: 100%;
+  margin-top: 7px;
+  overflow-y: scroll;
+}
+.contenidocollapse {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
 }
 
 .accordion-body input {

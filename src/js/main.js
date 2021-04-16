@@ -136,9 +136,11 @@ async function initMap() {
 }
 
 function goPoint(lat, lng, id) {
-    map.panTo(new google.maps.LatLng(lat, lng));
-    map.setZoom(9);
-    cargarUbicacion(id);
+  map.panTo(new google.maps.LatLng(lat, lng));
+  map.setZoom(9);
+  eval(`infowindow` + id + `.open(map, marker` + id + `);`);
+  eval(`marker` + id + `.setAnimation(google.maps.Animation.BOUNCE);`);
+  console.log(`marker${id}`);
 }
 
 
@@ -207,7 +209,7 @@ async function CargarUbucaciones(listaUbicaciones = null) {
         html += `   
       <div class="item-list-ubications">
       <a
-                    onclick="goPoint(${s.latitud}, ${s.longitud})"
+                    onclick="goPoint(${s.latitud}, ${s.longitud}, ${s.id})"
                     class="list-group-item list-group-item-action"
                     aria-current="true"
                     >
