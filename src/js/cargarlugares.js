@@ -59,6 +59,7 @@ $('.remove-preview').on('click', function() {
     var dropzone = $(this).parents('.form-group').find('.dropzone');
     boxZone.empty();
     _modificar = false;
+    _fotoCargada = "";
     previewZone.addClass('hidden');
     reset(dropzone);
 });
