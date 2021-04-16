@@ -3,9 +3,7 @@
     "",
     "\\db",
     "\\db\\datos",
-    "\\db\\modelo",
-    "\\src\\js"
+    "\\db\\modelo"
   ],
-  "SelectedNode": "\\db\\mapainteractivo.sql",
   "PreviewInSolutionExplorer": false
 }
