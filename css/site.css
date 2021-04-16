@@ -1,90 +1,18 @@
 ﻿@charset "utf-8";
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900");
-
-
-/*.standard_dropdown li {
-    display: inline-block;
-    position: relative;
-    height: 56px;
-}
-
-
-
-
-
-
-
-    .standard_dropdown li.hassubs > a i {
-        display: inline-block;
-        margin-left: 5px;
-    }
-
-
-    .standard_dropdown li a i {
-        display: none;
-        -webkit-transform: translateY(-1px);
-        -moz-transform: translateY(-1px);
-        -ms-transform: translateY(-1px);
-        -o-transform: translateY(-1px);
-        transform: translateY(-1px);
-        font-size: 12px;
-    }
-
-    .standard_dropdown li ul {
-        display: block;
-        position: absolute;
-        top: 120%;
-        left: 0;
-        width: auto;
-        visibility: hidden;
-        opacity: 0;
-        background: #1B1A1A;
-        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-        -webkit-transition: opacity 0.3s ease;
-        -moz-transition: opacity 0.3s ease;
-        -ms-transition: opacity 0.3s ease;
-        -o-transition: opacity 0.3s ease;
-        transition: all 0.3s ease;
-        z-index: 1;
-    }
-
-    .standard_dropdown li:hover > ul {
-        top: 100%;
-        visibility: visible;
-        opacity: 1;
-    }*/
-
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900');
 
 #logo {
-    width: 30px;
-    margin-right: 40px;
+  width: 30px;
+  margin-right: 40px;
 }
-
-
-
-
-/*a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}*/
 
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
 }
 
-
-/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}*/
-
 /* Sticky footer styles
 -------------------------------------------------- */
-
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -94,183 +22,162 @@ a {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
-
-
-/* Sticky footer styles
--------------------------------------------------- */
-
-/*.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;*/ /* Vertically center the text there */
-/*}*/
-
-/*Empieza el CSS de la pagina*/
-/*Redes*/
-/*h2 {
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    padding-top: 30px;
-}*/
 #facebook {
-    margin-left: 40px;
-    width: 40px;
+  margin-left: 40px;
+  width: 40px;
 }
 
 #twitter {
-    margin-left: 40px;
-    width: 40px;
+  margin-left: 40px;
+  width: 40px;
 }
 
 #whatsapp {
-    margin-left: 40px;
-    width: 40px;
+  margin-left: 40px;
+  width: 40px;
 }
 
 #instagram {
-    margin-left: 40px;
-    width: 40px;
+  margin-left: 40px;
+  width: 40px;
 }
 
 #youtube {
-    margin-left: 40px;
-    width: 40px;
+  margin-left: 40px;
+  width: 40px;
 }
 
 #botones {
-    padding-left: 65px;
-    top:12px;
+  padding-left: 65px;
+  top: 12px;
 }
 
 #tabla {
-    width: 90%;
-    margin-top:100px;
+  width: 90%;
+  margin-top: 100px;
 }
 
 #titulo {
-    text-align: center;
+  text-align: center;
 }
 /*Estadisticas*/
 h2 {
-    font-family: 'Bungee Shade', cursive;
-    padding-top: 30px;
+  font-family: 'Bungee Shade', cursive;
+  padding-top: 30px;
 }
 
 #textarea {
-    height: 200px;
-    padding-right:20px;
+  height: 200px;
+  padding-right: 20px;
 }
 
 #logo-facebook {
-    padding-top: 50px; 
-    margin:-20px;
+  padding-top: 50px;
+  margin: -20px;
 }
 
 #logo-google {
-    padding-top: 50px
+  padding-top: 50px;
 }
 
 #div-google {
-    left: 30%;
+  left: 30%;
 }
 
 #div-facebook {
-    left: 30%;
+  left: 30%;
 }
 /*Corporativo*/
 #color {
-    display: inline-flex;
-    margin-right: 50px;
+  display: inline-flex;
+  margin-right: 50px;
 }
 
 #colores {
-    padding-left: 25%;
-    padding-top: 20px;
+  padding-left: 25%;
+  padding-top: 20px;
 }
 
 #cambio-logo {
-    text-align: center;
+  text-align: center;
 }
 
-#caja-color{
-    
-    padding-left:20%;
+#caja-color {
+  padding-left: 20%;
 }
-#render-body{
-    margin-top:-30px;
+#render-body {
+  margin-top: -30px;
 }
-#index-container{
-    margin-top:-75px;
+#index-container {
+  margin-top: -75px;
 }
 
 /*Actualizar foto*/
 
 #buscar-foto {
-    width: 70px;
+  width: 70px;
 }
 #cuadro-actualizarfoto {
-    margin-left: 5%;
-    margin-top: 0;
-    box-shadow: 2px 2px 5px #999;
-    height: 700px;
+  margin-left: 5%;
+  margin-top: 0;
+  box-shadow: 2px 2px 5px #999;
+  height: 700px;
 }
 #contenido-tablasFoto {
-    margin-left: 30%;
-    position: absolute;
+  margin-left: 30%;
+  position: absolute;
 }
 #editar {
-    margin-top: 20%;
-    margin-left: -30%;
+  margin-top: 20%;
+  margin-left: -30%;
 }
 #div-tabla2foto {
-    margin-left: 92%;
-    margin-top:0;
-    position: absolute;
+  margin-left: 92%;
+  margin-top: 0;
+  position: absolute;
 }
 #cuadro-tabla2 {
-    margin-left: 55%;
-    margin-top: -43%;
-    box-shadow: 2px 2px 5px #999;
-    height: 460px;
-    overflow-x:hidden;
+  margin-left: 55%;
+  margin-top: -43%;
+  box-shadow: 2px 2px 5px #999;
+  height: 460px;
+  overflow-x: hidden;
 }
 /*Registra usuario*/
 #tipo_identificacion {
-    width: 100%;
-    border-radius: 30px;
-    padding-top: 15px;
-    color: #6e707e;
-    background-color: #fff;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #858796;
+  width: 100%;
+  border-radius: 30px;
+  padding-top: 15px;
+  color: #6e707e;
+  background-color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #858796;
 }
 
 #departamento {
-    width: 100%;
-    border-radius: 30px;
-    padding-top: 15px;
-    color: #6e707e;
-    background-color: #fff;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #858796;
+  width: 100%;
+  border-radius: 30px;
+  padding-top: 15px;
+  color: #6e707e;
+  background-color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #858796;
 }
 
 #municipio {
-    width: 100%;
-    border-radius: 30px;
-    padding-top: 15px;
-    color: #6e707e;
-    background-color: #fff;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #858796;
+  width: 100%;
+  border-radius: 30px;
+  padding-top: 15px;
+  color: #6e707e;
+  background-color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #858796;
 }
 
 /*Buscador*/
@@ -278,203 +185,80 @@ h2 {
 /*Formulario Mascota/Prodcuto*/
 
 #cuadro2 {
-    margin-left: 25%;
-    margin-top: 5%;
-    box-shadow: 2px 2px 5px #999;
-    height: 600px;
-    
+  margin-left: 25%;
+  margin-top: 5%;
+  box-shadow: 2px 2px 5px #999;
+  height: 600px;
 }
 
 #cuadro22 {
-    margin-left: 1%;
-    margin-top: 10px;
-    box-shadow: 2px 2px 5px #999;
-    height: 600px;
-
+  margin-left: 1%;
+  margin-top: 10px;
+  box-shadow: 2px 2px 5px #999;
+  height: 600px;
 }
 
 #cuadro22a {
-    margin-left: 0;
-    margin-top: -24px;
-    box-shadow: 2px 2px 5px #999;
-    height: 200px;
-    
+  margin-left: 0;
+  margin-top: -24px;
+  box-shadow: 2px 2px 5px #999;
+  height: 200px;
 }
 #cuadro-agregar {
-    margin-left: 0%;
-    margin-top: 0%;
-    box-shadow: 2px 2px 5px #999;
-    height: 400px;
+  margin-left: 0%;
+  margin-top: 0%;
+  box-shadow: 2px 2px 5px #999;
+  height: 400px;
 }
 #cuadro-agregar-mascota {
-    width: 24rem;
-    margin-left: 30%;
+  width: 24rem;
+  margin-left: 30%;
 }
 #cuadro-listaproductos-admin {
-    margin-left: 1%;
-    margin-top: 10px;
-    box-shadow: 2px 2px 5px #999;
-    height: 200px;
+  margin-left: 1%;
+  margin-top: 10px;
+  box-shadow: 2px 2px 5px #999;
+  height: 200px;
 }
 
 #columna {
-    column-count: 2;
-    text-align: justify;
+  column-count: 2;
+  text-align: justify;
 }
 
 #modal-mascotas {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
-    outline: 0;
-    margin-left: -45%;
-    width: 170%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+  margin-left: -45%;
+  width: 170%;
 }
 /*Scroll bar*/
 #ScrollColor::-webkit-scrollbar {
-    width: 8px;
-    background: #348fe2;
+  width: 8px;
+  background: #348fe2;
 }
 
 #ScrollColor::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px none;
-    border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px none;
+  border-radius: 10px;
 }
 
 #ScrollColor::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: black;
+  border-radius: 10px;
+  background: black;
 }
 
-
-
-
-/*#text-titulo {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 30px;
-    font-family:sans-serif;
+.ocultar {
+  display: none;
 }
-
-#btn-agregar-mascota {
-    display: flex;
-    justify-content: center;
-}
-
-#cuadro-agregar {
-    margin-left: 0;
-    margin-top: -24px;
-    box-shadow: 2px 2px 5px #999;
-    height: 350px;
-}*/
-
-
-
-
-/*Formulario Mascota/Prodcuto*/
-/*@import "compass/css3";*/
-
-/***********************
- * Essential Structure *
- ***********************/
-/*.flexsearch--wrapper {
-    height: 80px;
-    width: 25%;
-    
-    overflow: hidden;
-    background: transparent;
-    margin: 0;
-    position: static;
-}
-
-.flexsearch--form {
-    overflow: hidden;
-    position: relative;
-}
-
-.flexsearch--input-wrapper {
-    padding: 0 66px 0 0;*/ /* Right padding for submit button width */
-    /*overflow: hidden;
-}
-
-.flexsearch--input {
-    width: 100%;
-}*/
-
-/***********************
- * Configurable Styles *
- ***********************/
-/*.flexsearch {
-    padding: 0 25px 0 200px;*/ /* Padding for other horizontal elements */
-/*}
-
-.flexsearch--input {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 40px;
-    padding: 0 46px 0 10px;
-    border-color: #888;
-    border-radius: 10px;*/ /* (height/2) + border-width */
-    /*border-style: solid;
-    border-width: 1px;
-    margin-top: 15px;
-    color: #333;
-    font-family: 'Helvetica', sans-serif;
-    font-size: 15px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-.flexsearch--submit {
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: block;
-    width: 60px;
-    height: 60px;
-    padding: 0;
-    border: none;
-    margin-top: 5px;*/ /* margin-top + border-width */
-    /*margin-right: 5px;*/ /* border-width */
-    /*background: transparent;
-    color: #888;
-    font-family: 'Helvetica', sans-serif;
-    font-size: 25px;
-    line-height: 60px;
-}
-
-.flexsearch--input:focus {
-    outline: none;
-    border-color: #333;
-}
-
-    .flexsearch--input:focus.flexsearch--submit {
-        color: #333;
-    }
-
-.flexsearch--submit:hover {
-    color: #333;
-    cursor: pointer;
-}
-
-::-webkit-input-placeholder {
-    color: #888;
-}
-
-input:-moz-placeholder {
-    color: #888
-}*/
-
-.ocultar{
-    display:none;
-}
-.visualizar{
-    display:normal;
+.visualizar {
+  display: normal;
 }

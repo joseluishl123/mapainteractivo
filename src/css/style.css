@@ -1,41 +1,82 @@
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
 #map {
-    height: 100%;
-    width: 75%;
+  height: 100%;
+  width: 75%;
 }
-
-
-/* Optional: Makes the sample page fill the window. */
 
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    display: flex;
+  display: flex;
 }
 
 form {
-    width: 100%;
-    /* padding: 2rem; */
+  width: 100%;
 }
 
 .content {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.accordion-body input {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.accordion-body nav {
+  width: 100%;
 }
 
 .accordion-item {
-    width: 100%;
+  width: 100%;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.remove-preview,
+.btnGuardar {
+  width: 100%;
+}
+
+.gm-style-iw.gm-style-iw-c {
+  width: 500px;
+}
+
+.item-list-ubications {
+  display: flex;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.action-buttons i {
+  cursor: pointer;
+}
+
+.confirmation {
+  border-radius: 3px;
+  background-color: #00c569;
+  color: #fff;
+  text-align: center;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation h2 {
+  font-size: 20px;
 }
