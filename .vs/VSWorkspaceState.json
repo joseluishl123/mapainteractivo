@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\db",
+    "\\db\\conexion",
     "\\db\\datos",
-    "\\db\\modelo"
+    "\\lib"
   ],
+  "SelectedNode": "\\db\\conexion",
   "PreviewInSolutionExplorer": false
 }
