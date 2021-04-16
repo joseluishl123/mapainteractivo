@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\db",
+    "\\db\\conexion",
     "\\db\\datos",
-    "\\db\\modelo",
+    "\\mapa",
+    "\\src",
     "\\src\\js"
   ],
-  "SelectedNode": "\\db\\mapainteractivo.sql",
   "PreviewInSolutionExplorer": false
 }

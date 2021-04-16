@@ -3,22 +3,18 @@
   <head>
     <title>Mapa</title>
     <meta charset="utf-8" />
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          name="viewport" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
 
     <link href="../src/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../src/css/bootstrap.min.css" />
 
     <link href="../css/Configuracion/ActualizarFoto.css" rel="stylesheet" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="map" class="map"></div>
     <div class="content">
       <div class="action-button">
@@ -108,18 +104,17 @@
             >
               <div class="containerform">
                 <div class="form-group">
-                  <div class="preview-zone hidden centrado">
-                    <div class="box box-solid">
-                      <button
-                        type="button"
-                        class="btn btn-danger btn-xs remove-preview"
-                        id="descartar"
-                      >
-                        <i class="fa fa-times"></i> Descartar Imagen
-                      </button>
-                      <div class="box-body"></div>
+                    <div class="preview-zone hidden centrado">
+                        <div class="box box-solid">
+                            <button type="button"
+                                    class="btn btn-danger btn-xs remove-preview"
+                                    id="descartar">
+                                <i class="fa fa-times"></i> Descartar
+                            </button>
+                            <div class="box-body"></div>
+                        </div>
+                        <div class="box-body" id="cargar_imagen"></div>
                     </div>
-                  </div>
                   <div class="dropzone-wrapper centrado">
                     <div class="dropzone-desc">
                       <i class="glyphicon glyphicon-download-alt"></i>
@@ -217,10 +212,9 @@
     </div> -->
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script src="../src/js/peticiones.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script src="../assets/js/theme/default.min.js"></script>
     <script src="../src/js/cargarlugares.js"></script>
@@ -232,5 +226,5 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- ================== END BASE JS ================== -->
-  </body>
+</body>
 </html>
