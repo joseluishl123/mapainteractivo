@@ -123,12 +123,10 @@ async function initMap() {
   }
 }
 
-function goPoint(lat, lng, id) {
+function goPoint(lat, lng, id, btn) {
   map.panTo(new google.maps.LatLng(lat, lng));
   map.setZoom(9);
-  eval(`infowindow` + id + `.open(map, marker` + id + `);`);
-  eval(`marker` + id + `.setAnimation(google.maps.Animation.BOUNCE);`);
-  console.log(`marker${id}`);
+  onVerificarEstado(btn);
 }
 
 async function GetServidorAsync(url, token = '') {
@@ -201,6 +199,25 @@ async function GuardarUbicacion() {
   alert('La ubicación de ha guardado');
 }
 
+function onVerificarEstado(idBtn) {
+  let guardarBtn = document
+    .getElementById('guardarNubicacion')
+    .classList.contains('show');
+  let listanBtn = document
+    .getElementById('listadeubicaciones')
+    .classList.contains('show');
+  if (idBtn === 'guardar' && listanBtn == true) {
+    document.getElementById('listadeubicaciones').classList.toggle('show');
+  } else if (idBtn === 'listar' && guardarBtn == true) {
+    document.getElementById('guardarNubicacion').classList.toggle('show');
+  } else if (idBtn == 'lugar') {
+    document.getElementById('listadeubicaciones').classList.toggle('show');
+  } else if (idBtn == 'edit' && listanBtn == true) {
+    document.getElementById('listadeubicaciones').classList.toggle('show');
+    document.getElementById('guardarNubicacion').classList.toggle('show');
+  }
+}
+
 async function CargarUbucaciones() {
   let datos = await GetServidorAsync(`${urlBase}/db/datos/lista.php`);
   if (datos != null) {
@@ -210,7 +227,7 @@ async function CargarUbucaciones() {
       html += `   
       <div class="item-list-ubications">
       <a
-                    onclick="goPoint(${s.latitud}, ${s.longitud}, ${s.id})"
+                    onclick="goPoint(${s.latitud}, ${s.longitud}, ${s.id}, 'lugar')"
                     class="list-group-item list-group-item-action"
                     aria-current="true"
                     >
@@ -220,7 +237,7 @@ async function CargarUbucaciones() {
                     <p class="mb-1">${s.descripcion}</p>
                 </a>
                 <div class="action-buttons">
-                <i class="bi bi-pencil"></i>
+                <i class="bi bi-pencil" onclick=onVerificarEstado('edit')></i>
                 <i class="bi bi-trash"></i>
                 </div>
                 </div>

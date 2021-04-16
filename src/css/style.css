@@ -45,6 +45,7 @@ form {
   margin-top: 7px;
   overflow-y: scroll;
 }
+
 .contenidocollapse {
   width: 100%;
   background-color: #ffffff;
@@ -84,7 +85,10 @@ a {
 .action-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  width: 50px;
+  align-items: center;
+  border: 1px #dfdfdf solid;
 }
 
 .action-buttons i {
