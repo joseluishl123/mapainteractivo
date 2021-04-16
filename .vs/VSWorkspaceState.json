@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets\\js\\theme",
     "\\db",
     "\\db\\conexion",
     "\\db\\datos",
@@ -9,6 +8,5 @@
     "\\src",
     "\\src\\js"
   ],
-  "SelectedNode": "\\mapa\\index.html",
   "PreviewInSolutionExplorer": false
 }
