@@ -57,7 +57,8 @@ async function initMap() {
             // i++;
             let i = s.id;
             var imageb64 = "https://i.pinimg.com/736x/3a/ab/e0/3aabe0e9a520b9ad90407a82f85adb42.jpg";
-            if (s.imagen != null && s.imagen!="") {
+            console.log(s.imagen);
+            if (s.imagen != null && s.imagen != "") {
                 imageb64 = atob(s.imagen);
             }
             console.log(s.latitud, s.longitud);
@@ -136,9 +137,9 @@ async function initMap() {
 }
 
 function goPoint(lat, lng, id, btn) {
-  map.panTo(new google.maps.LatLng(lat, lng));
-  map.setZoom(9);
-  onVerificarEstado(btn);
+    map.panTo(new google.maps.LatLng(lat, lng));
+    map.setZoom(9);
+    onVerificarEstado(btn);
 }
 
 
@@ -191,35 +192,30 @@ async function GuardarUbicacion() {
 }
 
 function onVerificarEstado(idBtn) {
-  let guardarBtn = document
-    .getElementById('guardarNubicacion')
-    .classList.contains('show');
-  let listanBtn = document
-    .getElementById('listadeubicaciones')
-    .classList.contains('show');
-  if (idBtn === 'guardar' && listanBtn == true) {
-    document.getElementById('listadeubicaciones').classList.toggle('show');
-  } else if (idBtn === 'listar' && guardarBtn == true) {
-    document.getElementById('guardarNubicacion').classList.toggle('show');
-  } else if (idBtn == 'lugar') {
-    document.getElementById('listadeubicaciones').classList.toggle('show');
-  } else if (idBtn == 'edit' && listanBtn == true) {
-    document.getElementById('listadeubicaciones').classList.toggle('show');
-    document.getElementById('guardarNubicacion').classList.toggle('show');
-  }
+    let guardarBtn = document
+        .getElementById('guardarNubicacion')
+        .classList.contains('show');
+    let listanBtn = document
+        .getElementById('listadeubicaciones')
+        .classList.contains('show');
+    if (idBtn === 'guardar' && listanBtn == true) {
+        document.getElementById('listadeubicaciones').classList.toggle('show');
+    } else if (idBtn === 'listar' && guardarBtn == true) {
+        document.getElementById('guardarNubicacion').classList.toggle('show');
+    } else if (idBtn == 'lugar') {
+        document.getElementById('listadeubicaciones').classList.toggle('show');
+    } else if (idBtn == 'edit' && listanBtn == true) {
+        document.getElementById('listadeubicaciones').classList.toggle('show');
+        document.getElementById('guardarNubicacion').classList.toggle('show');
+    }
 }
 
 async function CargarUbucaciones() {
-  let datos = await GetServidorAsync(`${urlBase}/db/datos/lista.php`);
-  if (datos != null) {
-    let html = '';
-    if (listaUbicaciones == null) {
-        datos = await GetServidorAsync(`${urlBase}db/datos/lista.php`);
-        if (datos != null) {
-            _listaUbicaciones = datos.datos;
-            listaUbicaciones = datos.datos;
-        }
-    }
+    let datos = await GetServidorAsync(`${urlBase}/db/datos/lista.php`);
+    if (datos != null) {
+        let html = '';
+        _listaUbicaciones = datos.datos;
+        listaUbicaciones = datos.datos;
 
     _modificar = false;
     listaUbicaciones.forEach((s) => {
@@ -245,6 +241,7 @@ async function CargarUbucaciones() {
     });
     document.getElementById('lugares_mapa').innerHTML = html;
     return listaUbicaciones;
+}
 }
 
 

@@ -14,139 +14,117 @@
     <link href="../css/Configuracion/ActualizarFoto.css" rel="stylesheet" />
 </head>
 
-<body>
-    <div id="map" class="map"></div>
-    <div class="content">
-      <div class="action-button">
-        <button
-          class="btn btn-light"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#guardarNubicacion"
-          aria-expanded="false"
-          aria-controls="guardarNubicacion"
-          onclick="onVerificarEstado('guardar')"
-        >
-          Guardar nueva ubicación
-        </button>
-        <button
-          class="btn btn-light"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#listadeubicaciones"
-          aria-expanded="false"
-          aria-controls="listadeubicaciones"
-          onclick="onVerificarEstado('listar')"
-        >
-          LIsta de ubicaciones
-        </button>
-      </div>
-      <div class="container-collapse">
-        <div class="contenidocollapse collapse" id="listadeubicaciones">
-          <input
-            class="form-control"
-            type="text"
-            id="filtro-ubicaciones"
-            aria-label="default input example"
-            placeholder="Buscar una ubicación"
-          />
-          <div class="list-group" id="lugares_mapa"></div>
-        </div>
-        <div class="contenidocollapse collapse" id="guardarNubicacion">
-          <form action="">
-            <div class="mb-3">
-              <div class="confirmation" id="confirmation-label">
-                <h2>Ubicación Definida</h2>
-              </div>
-              <label for="InputTitle" class="form-label">Nombre</label>
-              <input
-                class="form-control"
-                type="text"
-                id="nombre_lugar"
-                placeholder="Nombre del punto"
-                aria-label="default input example"
-              />
-            </div>
-            <div class="mb-3" style="display: none">
-              <label for="InputTitle" class="form-label">Coordenas</label>
-              <input
-                class="form-control"
-                type="text"
-                id="Latitud"
-                aria-label="default input example"
-                disabled
-              />
-              <input
-                class="form-control"
-                type="text"
-                id="Longitud"
-                aria-label="default input example"
-                disabled
-              />
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label"
-                >Descripción</label
-              >
-              <textarea
-                id="descripcion_lugar"
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-              ></textarea>
-            </div>
-
-            <form
-              id="caragarImg"
-              action=""
-              method="POST"
-              enctype="multipart/form-data"
-            >
-              <div class="containerform">
-                <div class="form-group">
-                    <div class="preview-zone hidden centrado">
-                        <div class="box box-solid">
-                            <button type="button"
-                                    class="btn btn-danger btn-xs remove-preview"
-                                    id="descartar">
-                                <i class="fa fa-times"></i> Descartar
-                            </button>
-                            <div class="box-body"></div>
-                        </div>
-                        <div class="box-body" id="cargar_imagen"></div>
-                    </div>
-                  <div class="dropzone-wrapper centrado">
-                    <div class="dropzone-desc">
-                      <i class="glyphicon glyphicon-download-alt"></i>
-                      <p>Arrastra o selcciona una imagen.</p>
-                    </div>
-                    <input
-                      id="fotoBanner"
-                      type="file"
-                      name="img_logo"
-                      class="dropzone"
-                      onclick=""
-                      accept="image/png, image/jpeg,image/webp, image/svg,image/jpg"
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <div class="col-auto">
-              <button
-                type="submit"
-                class="btn btn-primary mb-3 btnGuardar"
-                onclick="GuardarUbicacion()"
-              >
-                Guardar Ubicación
+  <body>
+      <div id="map" class="map"></div>
+      <div class="content">
+          <div class="action-button">
+              <button class="btn btn-light"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#guardarNubicacion"
+                      aria-expanded="false"
+                      aria-controls="guardarNubicacion"
+                      onclick="onVerificarEstado('guardar')">
+                  Guardar nueva ubicación
               </button>
-            </div>
-          </form>
-        </div>
+              <button class="btn btn-light"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#listadeubicaciones"
+                      aria-expanded="false"
+                      aria-controls="listadeubicaciones"
+                      onclick="onVerificarEstado('listar')">
+                  LIsta de ubicaciones
+              </button>
+          </div>
+          <div class="container-collapse">
+              <div class="contenidocollapse collapse" id="listadeubicaciones">
+                  <input class="form-control"
+                         type="text"
+                         id="filtro-ubicaciones"
+                         aria-label="default input example"
+                         placeholder="Buscar una ubicación" />
+                  <div class="list-group" id="lugares_mapa"></div>
+              </div>
+              <div class="contenidocollapse collapse" id="guardarNubicacion">
+                  <form action="">
+                      <div class="mb-3">
+                          <div class="confirmation" id="confirmation-label">
+                              <h2>Ubicación Definida</h2>
+                          </div>
+                          <label for="InputTitle" class="form-label">Nombre</label>
+                          <input class="form-control"
+                                 type="text"
+                                 id="nombre_lugar"
+                                 placeholder="Nombre del punto"
+                                 aria-label="default input example" />
+                      </div>
+                      <div class="mb-3" style="display: none">
+                          <label for="InputTitle" class="form-label">Coordenas</label>
+                          <input class="form-control"
+                                 type="text"
+                                 id="Latitud"
+                                 aria-label="default input example"
+                                 disabled />
+                          <input class="form-control"
+                                 type="text"
+                                 id="Longitud"
+                                 aria-label="default input example"
+                                 disabled />
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                          <textarea id="descripcion_lugar"
+                                    class="form-control"
+                                    id="exampleFormControlTextarea1"
+                                    rows="3"></textarea>
+                      </div>
+
+                      <form id="caragarImg"
+                            action=""
+                            method="POST"
+                            enctype="multipart/form-data">
+                          <div class="containerform">
+                              <div class="form-group">
+                                  <div class="preview-zone hidden centrado">
+                                      <div class="box box-solid">
+                                          <button type="button"
+                                                  class="btn btn-danger btn-xs remove-preview"
+                                                  id="descartar">
+                                              <i class="fa fa-times"></i> Descartar
+                                          </button>
+                                          <div class="box-body"></div>
+                                      </div>
+                                      <div class="box-body" id="cargar_imagen"></div>
+                                  </div>
+                                  <div class="dropzone-wrapper centrado">
+                                      <div class="dropzone-desc">
+                                          <i class="glyphicon glyphicon-download-alt"></i>
+                                          <p>Arrastra o selcciona una imagen.</p>
+                                      </div>
+                                      <input id="fotoBanner"
+                                             type="file"
+                                             name="img_logo"
+                                             class="dropzone"
+                                             onclick=""
+                                             accept="image/png, image/jpeg,image/webp, image/svg,image/jpg" />
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+
+                      <div class="col-auto">
+                          <button type="submit"
+                                  class="btn btn-primary mb-3 btnGuardar"
+                                  onclick="GuardarUbicacion()">
+                              Guardar Ubicación
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
       </div>
-    </div>
-    <!--     <div class="accordion content" id="accordionExample">
+      <!--     <div class="accordion content" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button
@@ -210,21 +188,20 @@
         </div>
       </div>
     </div> -->
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly"
-            async></script>
-    <script src="../src/js/peticiones.js"></script>
-    <script src="../assets/js/app.min.js"></script>
-    <script src="../assets/js/theme/default.min.js"></script>
-    <script src="../src/js/cargarlugares.js"></script>
-    <script src="../src/js/main.js"></script>
-    <script src="../src/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
-    <!-- ================== END BASE JS ================== -->
-</body>
+      <script src="../src/js/peticiones.js"></script>
+      <script src="../assets/js/app.min.js"></script>
+      <script src="../assets/js/theme/default.min.js"></script>
+      <script src="../src/js/cargarlugares.js"></script>
+      <script src="../src/js/bootstrap.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+      <script src="../src/js/main.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiVFviWSyBDoOm4NZdOVugh1uQtWz2AI&callback=initMap&libraries=&v=weekly"
+              async></script>
+      <!-- ================== END BASE JS ================== -->
+  </body>
 </html>
