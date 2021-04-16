@@ -46,11 +46,9 @@ async function initMap() {
   });
  */
 
-  // var lugares = CargarUbucaciones();
   var datos = await CargarUbucaciones();
   console.log(datos);
   datos.forEach((s) => {
-    // i++;
     let i = s.id;
     var imageb64 = atob(s.imagen);
     console.log(s.latitud, s.longitud);
@@ -125,9 +123,12 @@ async function initMap() {
   }
 }
 
-function goPoint(lat, lng) {
+function goPoint(lat, lng, id) {
   map.panTo(new google.maps.LatLng(lat, lng));
   map.setZoom(9);
+  eval(`infowindow` + id + `.open(map, marker` + id + `);`);
+  eval(`marker` + id + `.setAnimation(google.maps.Animation.BOUNCE);`);
+  console.log(`marker${id}`);
 }
 
 async function GetServidorAsync(url, token = '') {
@@ -209,7 +210,7 @@ async function CargarUbucaciones() {
       html += `   
       <div class="item-list-ubications">
       <a
-                    onclick="goPoint(${s.latitud}, ${s.longitud})"
+                    onclick="goPoint(${s.latitud}, ${s.longitud}, ${s.id})"
                     class="list-group-item list-group-item-action"
                     aria-current="true"
                     >
