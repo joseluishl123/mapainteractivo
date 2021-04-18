@@ -10,7 +10,7 @@ $imagen = $data['imagen'] ;
 $id = $data['id'] ;
 
 
-$sql="UPDATE `logar` SET `nombre`='$nombre',`descripcion`='$descripcion',`latitud`='$latitud',`longitud`='$longitud',`imagen`='$longitud' WHERE id  = $id";
+$sql="UPDATE `logar` SET `nombre`='$nombre',`descripcion`='$descripcion',`latitud`='$latitud',`longitud`='$longitud',`imagen`='$imagen' WHERE id  = $id";
 $query=$dbh->prepare($sql);
 
 $query->bindParam(':nombre',$nombre);  

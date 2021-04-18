@@ -1,4 +1,4 @@
-var _fotoCargada;
+var _fotoCargada ="";
 
 function readFile(input) {
     if (input.files && input.files[0]) {
@@ -9,7 +9,7 @@ function readFile(input) {
             //document.getElementById("cargar_imagen").innerHTML = "";
             var htmlPreview =
                 '<img width="200" id="imagenBannerTemporal" src="' + e.target.result + '" />' +
-                '<p>' + input.files[0].name + '</p>';
+                '<p id="nombreImagen">' + input.files[0].name + '</p>';
             _fotoCargada = e.target.result;
             var encodedStringBtoA = btoa(_fotoCargada);
             // console.log(encodedStringBtoA);
@@ -62,4 +62,10 @@ $('.remove-preview').on('click', function() {
     _fotoCargada = "";
     previewZone.addClass('hidden');
     reset(dropzone);
+
+     if (document.getElementById("imagenBannerTemporal2")) {
+        document.getElementById("nombreImagen2").innerHTML = ""
+        document.getElementById("imagenBannerTemporal2").src = ""
+    }    
 });
+

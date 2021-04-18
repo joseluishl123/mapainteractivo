@@ -1,6 +1,6 @@
 // This example displays a marker at the center of Australia.
 // When the user clicks the marker, an info window opens.
-
+//AlertConfirmar();
 // var lugares = CargarUbucaciones();
 var map = null;
 var latitud = null;
@@ -144,14 +144,7 @@ function goPoint(lat, lng, id, btn) {
 
 
 async function GuardarUbicacion() {
-    console.log(_modificar);
-
-    if (_modificar) {
-        var confirma = confirm("Desea actualizar la ubicación?");
-        console.log(_modificar);
-
-        return;
-    }
+  
 
     var nombre = document.getElementById('nombre_lugar').value;
     var latutd = document.getElementById('Latitud').value;
@@ -164,31 +157,43 @@ async function GuardarUbicacion() {
         descripcion: descripcion,
         imagen: _fotoCargada,
     };
-    _modificar = false;
+    //_modificar = false;
     console.log(data);
     if (nombre == null || nombre == '') {
-        alert('Ingrese un nombre ');
+        swal('Ingrese un nombre ');
+        return;
     }
     if (descripcion == null || descripcion == '') {
-        alert('Ingrese una descripcion al lugar ');
+        swal('Ingrese una descripcion al lugar ');
         return;
     }
     if (latutd == null || latutd == '') {
-        alert('Selecciona un lugar en el mapa');
+        swal('Selecciona un lugar en el mapa');
         return;
     }
 
     if (longitud == null || longitud == '') {
-        alert('Selecciona un lugar en el mapa');
+        swal('Selecciona un lugar en el mapa');
+        return;
+    }
+
+    if (_modificar) {
+        
+             ActualizarUbicacion();             
+            //alert('La ubicación se ha actualizado');
+        _modificar = false;
         return;
     }
 
     let url = `${urlBase}/db/datos/add-lugar.php`;
-    let respuesta = await POSTServidor(url, data, '');
+    let respuesta =  POSTServidor(url, data, '');
     console.log(respuesta);
-    await CargarUbucaciones();
+     CargarUbucaciones();
+    LimpiarControles();
     initMap();
-    alert('La ubicación se ha guardado');
+    swal("La ubicación se ha guardado", {
+        icon: "success",
+    });
 }
 
 function onVerificarEstado(idBtn) {
@@ -217,10 +222,10 @@ async function CargarUbucaciones() {
         _listaUbicaciones = datos.datos;
         listaUbicaciones = datos.datos;
 
-    _modificar = false;
-    listaUbicaciones.forEach((s) => {
-        console.log(s.latitud, s.longitud);
-        html += `   
+        _modificar = false;
+        listaUbicaciones.forEach((s) => {
+            console.log(s.latitud, s.longitud);
+            html += `   
       <div class="item-list-ubications">
       <a
                     onclick="goPoint(${s.latitud}, ${s.longitud}, ${s.id}, 'lugar')"
@@ -234,31 +239,35 @@ async function CargarUbucaciones() {
                 </a>
                 <div class="action-buttons">
                  <a onclick="cargarUbicacion(${s.id})"> <i class="bi bi-pencil"></i>  </a>
-                 <a onclick="EliminarUbicacion( ${s.id})"> <i class="bi bi-trash"></i> </a>
+                 <a onclick="EliminarUbicacion( ${s.id},'${s.descripcion}')"> <i class="bi bi-trash"></i> </a>
                 </div>
                 </div>
             `;
-    });
-    document.getElementById('lugares_mapa').innerHTML = html;
-    return listaUbicaciones;
-}
+        });
+        document.getElementById('lugares_mapa').innerHTML = html;
+        return listaUbicaciones;
+    }
 }
 
-
+var _idEditar;
 function cargarUbicacion(id) {
     _listaUbicaciones
+    LimpiarControles();
     for (let index = 0; index < _listaUbicaciones.length; index++) {
         const element = _listaUbicaciones[index];
         if (element.id == id) {
+            _idEditar = id;
             console.log("La nota es: ");
             document.getElementById("nombre_lugar").value = element.nombre;
             document.getElementById('Latitud').value = element.latitud;
             document.getElementById('Longitud').value = element.longitud;
             document.getElementById("descripcion_lugar").value = element.descripcion;
+            console.log(element.imagen);
             var htmlPreview =
-                '<img width="200" id="imagenBannerTemporal" src="' + atob(element.imagen) + '" />' +
-                '<p>Imagen</p>';
-            _fotoCargada = atob(element.imagen);
+                '<img width="200" id="imagenBannerTemporal2" src="' + atob(element.imagen) + '" />' +
+                '<p id="nombreImagen2">Imagen</p>';
+            _fotoCargada = element.imagen;
+            console.log(_fotoCargada);
             document.getElementById("cargar_imagen").innerHTML = htmlPreview;
             _modificar = true;
             console.log(_modificar);
@@ -270,20 +279,39 @@ function cargarUbicacion(id) {
 }
 
 
-async function EliminarUbicacion(id) {
-
+async function EliminarUbicacion(id, nombre) {
     let data = {
         id: id
     };
-    var confimar = confirm("Esta seguro de agregar la ubicación");
-    if (confimar) {
-        let url = `${urlBase}/db/datos/eliminar.php`;
-        let respuesta = await POSTServidor(url, data, '');
-        console.log(respuesta);
-        await CargarUbucaciones();
-        initMap();
-        alert('La ubicación de ha agregado');
-    }
+    //var confimar = confirm("Esta seguro de agregar la ubicación");
+    //if (confimar) {
+       
+        //alert('La ubicación de ha eliminado');
+    //}
+    swal({
+        title: "¿Esta seguro de eliminar el lugar?",
+        text: "Ok  para eliminar a " + nombre,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete)  =>  {
+            if (willDelete) {
+               
+                swal("Registro eliminado!", {
+                    icon: "success",
+                });
+
+                let url = `${urlBase}/db/datos/eliminar.php`;
+                let respuesta =  POSTServidor(url, data, '');
+                console.log(respuesta);
+                CargarUbucaciones();
+                initMap();
+
+            } else {
+                //swal("!!!!!!!");
+            }
+        });
 
 }
 
@@ -314,3 +342,84 @@ $("#filtro-ubicaciones").keyup(function (event) {
     //    return true;
     //}
 });
+
+ function ActualizarUbicacion() {
+
+
+    var nombre = document.getElementById('nombre_lugar').value;
+    var latutd = document.getElementById('Latitud').value;
+    var longitud = document.getElementById('Longitud').value;
+    var descripcion = document.getElementById('descripcion_lugar').value;
+
+    let data = {
+        id: _idEditar,
+        nombre: nombre,
+        latitud: latutd,
+        longitud: longitud,
+        descripcion: descripcion,
+        imagen: _fotoCargada,
+    };
+
+    _modificar = false;
+    swal({
+        title: "¿Esta seguro de editar el lugar?",
+        text: "",
+        //icon: "alert",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                let url = `${urlBase}/db/datos/editar.php`;
+                let respuesta =  POSTServidor(url, data, '');
+                console.log(respuesta);
+                _idEditar = 0;
+                LimpiarControles();
+                initMap();
+                swal('La ubicación se ha Actualizado', {
+                    icon: "success"
+                });                
+            } else {
+                LimpiarControles();
+                //swal("Your imaginary file is safe!");
+            }
+        });     
+}
+
+
+function LimpiarControles() {
+    document.getElementById('nombre_lugar').value = "";
+    document.getElementById('Latitud').value = "";
+    document.getElementById('Longitud').value = "";
+    document.getElementById('descripcion_lugar').value = "";
+    document.getElementById("cargar_imagen").innerHTML = "";
+    //document.getElementById("imagenBannerTemporal").src = "";
+    if (document.getElementById("imagenBannerTemporal")) {
+        document.getElementById("nombreImagen").innerHTML = ""
+        document.getElementById("imagenBannerTemporal").src = ""
+    }
+    if (document.getElementById("imagenBannerTemporal2")) {
+        document.getElementById("nombreImagen2").innerHTML = ""
+        document.getElementById("imagenBannerTemporal2").src = ""
+    }                                                                              
+}
+
+
+function AlertConfirmar() {
+    swal({
+        title: "¿Esta seguro de eliminar el lugar?",
+        text: "Est",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+        });
+}
