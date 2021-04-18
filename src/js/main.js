@@ -163,10 +163,12 @@ async function GuardarUbicacion() {
         swal('Ingrese un nombre ');
         return;
     }
+
     if (descripcion == null || descripcion == '') {
         swal('Ingrese una descripcion al lugar ');
         return;
     }
+
     if (latutd == null || latutd == '') {
         swal('Selecciona un lugar en el mapa');
         return;
